@@ -72,7 +72,7 @@ body {
   margin: 0 auto;
   padding: 88px 18px 22px;
   place-items: center;
-  width: 100vw;
+  width: 100%;
 }
 
 .chatSurface {
@@ -83,12 +83,13 @@ body {
   border-radius: 3.5rem;
   box-shadow: var(--shadow);
   display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(260px, 24vw, 340px);
   height: min(820px, calc(100dvh - 110px));
-  max-width: 980px;
+  max-width: 1360px;
   min-height: 0;
   overflow: hidden;
   position: relative;
-  width: min(90%, 980px);
+  width: min(calc(100vw - 36px), 1360px);
 }
 
 :root.dark .chatSurface {
@@ -112,6 +113,183 @@ body {
   min-width: 0;
   position: relative;
   z-index: 1;
+}
+
+.metricsPanel {
+  align-content: start;
+  border-left: 1px solid var(--line);
+  display: grid;
+  gap: 14px;
+  min-height: 0;
+  padding: 22px;
+  position: relative;
+  z-index: 1;
+}
+
+.metricsBox {
+  background: color-mix(in srgb, var(--surface-strong) 58%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 1.15rem;
+  display: grid;
+  gap: 18px;
+  padding: 16px;
+}
+
+.scoreBox {
+  gap: 14px;
+}
+
+.metricsHeader {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.metricsHeader span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.metricsHeader strong {
+  align-items: center;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--line));
+  border-radius: 999px;
+  color: var(--accent);
+  display: inline-flex;
+  font-size: 13px;
+  height: 30px;
+  justify-content: center;
+  min-width: 36px;
+  padding: 0 10px;
+}
+
+.bars {
+  display: grid;
+  gap: 18px;
+}
+
+.barRow {
+  display: grid;
+  gap: 8px;
+}
+
+.barLabel {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.barLabel span,
+.barCount {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.barLabel strong {
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 760;
+  line-height: 1;
+}
+
+.barTrack {
+  background: color-mix(in srgb, var(--muted) 12%, transparent);
+  border-radius: 999px;
+  height: 14px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.barFill {
+  border-radius: inherit;
+  display: block;
+  height: 100%;
+  transition: width 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  width: 0%;
+}
+
+.malwareBar {
+  background: linear-gradient(90deg, #e5484d, var(--accent));
+}
+
+.cleanBar {
+  background: linear-gradient(90deg, #1f9d67, #4cc38a);
+}
+
+.barCount {
+  justify-self: end;
+}
+
+.truthPanel {
+  display: grid;
+  gap: 10px;
+}
+
+.truthPanel > span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.truthActions {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.truthButton {
+  background: color-mix(in srgb, var(--surface-strong) 76%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 650;
+  height: 34px;
+  padding: 0 10px;
+}
+
+.truthButton:hover {
+  background: color-mix(in srgb, var(--surface-strong) 94%, transparent);
+  color: var(--accent);
+}
+
+.truthButton:disabled {
+  opacity: 0.38;
+}
+
+.scoreGrid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.scoreItem {
+  background: color-mix(in srgb, var(--surface-strong) 52%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 0.8rem;
+  display: grid;
+  gap: 6px;
+  min-height: 64px;
+  padding: 10px;
+}
+
+.scoreItem span {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.1;
+}
+
+.scoreItem strong {
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1;
 }
 
 .topbar {
@@ -520,7 +698,7 @@ button:active {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 760px) {
   .shell {
     padding: 76px 0 0;
   }
@@ -528,9 +706,52 @@ button:active {
   .chatSurface {
     border: 0;
     border-radius: 1.6rem 1.6rem 0 0;
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 1fr) auto;
     height: calc(100dvh - 76px);
     max-width: none;
     width: 100%;
+  }
+
+  .metricsPanel {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    gap: 12px;
+    padding: 12px 14px max(12px, env(safe-area-inset-bottom));
+  }
+
+  .metricsBox {
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .metricsHeader {
+    min-height: 30px;
+  }
+
+  .bars {
+    gap: 10px;
+  }
+
+  .scoreGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .scoreItem {
+    min-height: 54px;
+    padding: 8px;
+  }
+
+  .scoreItem strong {
+    font-size: 15px;
+  }
+
+  .barTrack {
+    height: 10px;
+  }
+
+  .barLabel strong {
+    font-size: 16px;
   }
 
   .topbar {
