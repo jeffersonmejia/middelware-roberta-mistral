@@ -47,31 +47,31 @@
         <aside class="metricsPanel" aria-label="Classification metrics">
           <section class="metricsBox">
             <div class="metricsHeader">
-              <span>Classified responses</span>
+              <span>RoBERTa</span>
               <strong id="metricsTotal">0</strong>
             </div>
 
             <div class="bars" aria-live="polite">
               <div class="barRow">
                 <div class="barLabel">
-                  <span>Malware</span>
-                  <strong id="malwarePercent">0%</strong>
+                <span>Not passed</span>
+                  <strong id="notPassedPercent">0%</strong>
                 </div>
                 <div class="barTrack">
-                  <span id="malwareBar" class="barFill malwareBar"></span>
+                  <span id="notPassedBar" class="barFill notPassedBar"></span>
                 </div>
-                <span id="malwareCount" class="barCount">0</span>
+                <span id="notPassedCount" class="barCount">0</span>
               </div>
 
               <div class="barRow">
                 <div class="barLabel">
-                  <span>No malware</span>
-                  <strong id="cleanPercent">0%</strong>
+                <span>Passed</span>
+                  <strong id="passedPercent">0%</strong>
                 </div>
                 <div class="barTrack">
-                  <span id="cleanBar" class="barFill cleanBar"></span>
+                  <span id="passedBar" class="barFill passedBar"></span>
                 </div>
-                <span id="cleanCount" class="barCount">0</span>
+                <span id="passedCount" class="barCount">0</span>
               </div>
             </div>
           </section>
@@ -80,8 +80,8 @@
             <div class="truthPanel">
               <span>Ground truth</span>
               <div class="truthActions">
-                <button id="truthMalwareButton" class="truthButton" type="button" disabled>Malware</button>
-                <button id="truthCleanButton" class="truthButton" type="button" disabled>No malware</button>
+                <button id="truthMalwareButton" class="truthButton" type="button" disabled>Not passed</button>
+                <button id="truthCleanButton" class="truthButton" type="button" disabled>Passed</button>
               </div>
             </div>
 

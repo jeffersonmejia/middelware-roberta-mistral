@@ -261,6 +261,23 @@ Expected response:
 }
 ```
 
+Optional response with evaluation metrics:
+
+```json
+{
+  "label": "safe",
+  "score": 0.94,
+  "metrics": {
+    "accuracy": 0.92,
+    "precision": 0.89,
+    "recall": 0.91,
+    "f1_score": 0.9
+  }
+}
+```
+
+If RoBERTa sends `metrics`, the middleware forwards them in the chat response and the web UI displays them in the metrics box.
+
 Expected labels:
 
 - `safe`

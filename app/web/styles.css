@@ -135,6 +135,16 @@ body {
   padding: 16px;
 }
 
+:root:not(.dark) .metricsBox {
+  background: rgba(255, 255, 255, 0.76);
+  border-color: rgba(60, 60, 67, 0.2);
+}
+
+:root.dark .metricsBox {
+  background: rgba(255, 255, 255, 0.075);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
 .scoreBox {
   gap: 14px;
 }
@@ -214,11 +224,11 @@ body {
   width: 0%;
 }
 
-.malwareBar {
+.notPassedBar {
   background: linear-gradient(90deg, #e5484d, var(--accent));
 }
 
-.cleanBar {
+.passedBar {
   background: linear-gradient(90deg, #1f9d67, #4cc38a);
 }
 
@@ -255,13 +265,52 @@ body {
   padding: 0 10px;
 }
 
+.truthActions .truthButton:first-child {
+  background: rgba(229, 72, 77, 0.1);
+  border-color: rgba(229, 72, 77, 0.34);
+  color: #b4232a;
+}
+
+.truthActions .truthButton:last-child {
+  background: rgba(31, 157, 103, 0.1);
+  border-color: rgba(31, 157, 103, 0.34);
+  color: #14784f;
+}
+
+:root.dark .truthActions .truthButton:first-child {
+  background: rgba(229, 72, 77, 0.16);
+  border-color: rgba(255, 132, 138, 0.42);
+  color: #ffb3b6;
+}
+
+:root.dark .truthActions .truthButton:last-child {
+  background: rgba(76, 195, 138, 0.14);
+  border-color: rgba(108, 220, 165, 0.42);
+  color: #a7efc7;
+}
+
 .truthButton:hover {
   background: color-mix(in srgb, var(--surface-strong) 94%, transparent);
-  color: var(--accent);
+}
+
+.truthActions .truthButton:first-child:hover {
+  background: rgba(229, 72, 77, 0.16);
+}
+
+.truthActions .truthButton:last-child:hover {
+  background: rgba(31, 157, 103, 0.16);
+}
+
+:root.dark .truthActions .truthButton:first-child:hover {
+  background: rgba(229, 72, 77, 0.22);
+}
+
+:root.dark .truthActions .truthButton:last-child:hover {
+  background: rgba(76, 195, 138, 0.2);
 }
 
 .truthButton:disabled {
-  opacity: 0.38;
+  opacity: 0.46;
 }
 
 .scoreGrid {
@@ -278,6 +327,16 @@ body {
   gap: 6px;
   min-height: 64px;
   padding: 10px;
+}
+
+:root:not(.dark) .scoreItem {
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(60, 60, 67, 0.18);
+}
+
+:root.dark .scoreItem {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
 }
 
 .scoreItem span {
