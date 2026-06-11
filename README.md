@@ -3,21 +3,41 @@
 ## Table of Contents
 
 1. [Overview](#1-overview)
-2. [Installation](#2-installation)
-3. [Docs](#3-docs)
+2. [Flow](#2-flow)
+3. [Installation](#3-installation)
+4. [Docs](#4-docs)
 
 ---
 
 ## 1. Overview
 
-Middleware de seguridad académico para requests y respuestas de modelos de lenguaje en contextos SCADA y redes eléctricas. Intercepta, clasifica, valida y audita cada interacción entre clientes y LLMs.
+Middleware de seguridad académico para requests y respuestas de modelos de lenguaje en contextos SCADA. Intercepta, clasifica, valida y audita cada interacción entre clientes y LLMs.
+
+```mermaid
+flowchart LR
+  U[User] --> W[Web GUI]
+  W --> R[RoBERTa]
+  R -->|malicious / suspicious| X[Blocked]
+  R -->|safe| M[Mistral]
+  M --> W
+```
 
 ---
 
-## 2. Installation
+## 2. Flow
+
+1. User sends a message from the web GUI
+2. RoBERTa classifies the prompt — trained to detect malicious code intent in SCADA context
+3. If **malicious** or **suspicious** → blocked, never reaches Mistral
+4. If **safe** → Mistral generates a response
+5. Response is validated and sent back to the user
+
+---
+
+## 3. Installation
 
 ```powershell
-git clone <repo-url>
+git clone https://github.com/jeffersonmejia/middelware-roberta-mistral.git
 cd backend-llm
 pip install -r requirements.txt
 cp .env.example .env
@@ -26,7 +46,7 @@ cp .env.example .env
 
 ---
 
-## 3. Docs
+## 4. Docs
 
 | File | Content |
 |---|---|
