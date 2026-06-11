@@ -15,20 +15,20 @@ Middleware de seguridad académico para requests y respuestas de modelos de leng
 
 ```mermaid
 flowchart LR
-  U[User] --> W[Web GUI]
-  W --> R[RoBERTa]
-  R -->|malicious / suspicious| X[Blocked]
+  U[User] --> S[SCADA AI]
+  S --> R[RoBERTa]
+  R -->|malicious| X[Blocked]
   R -->|safe| M[Mistral]
-  M --> W
+  M --> S
 ```
 
 ---
 
 ## 2. Flow
 
-1. User sends a message from the web GUI
+1. User sends a message from SCADA AI
 2. RoBERTa classifies the prompt — trained to detect malicious code intent in SCADA context
-3. If **malicious** or **suspicious** → blocked, never reaches Mistral
+3. If **malicious** → blocked, never reaches Mistral
 4. If **safe** → Mistral generates a response
 5. Response is validated and sent back to the user
 
